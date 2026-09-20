@@ -1,0 +1,285 @@
+/* ==========================================================================
+   CAREER PREPARATION & SKILL MASTERY SYSTEM
+   Responsive Stylesheet: Tablet, Mobile, and Viewport Breakpoints
+   ========================================================================== */
+
+/* Utility Visibility Classes */
+@media (min-width: 1025px) {
+  .d-lg-none {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .d-lg-block {
+    display: block !important;
+  }
+
+  /* App Main Layout */
+  .app-sidebar {
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-lg);
+  }
+
+  body.sidebar-mobile-open .app-sidebar {
+    transform: translateX(0);
+  }
+
+  /* Backdrop for mobile drawer */
+  body.sidebar-mobile-open::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    z-index: 95;
+  }
+
+  .app-main-content {
+    margin-left: 0;
+  }
+
+  /* Mobile Top Bar */
+  .mobile-top-bar {
+    height: 56px;
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 80;
+  }
+
+  .mobile-menu-toggle, .mobile-search-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .brand-accent-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary);
+    border-radius: 50%;
+  }
+
+  .brand-title {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .app-top-header {
+    display: none; /* Replaced by mobile top bar on mobile/tablet */
+  }
+
+  .app-content-body {
+    padding: 16px;
+  }
+
+  /* Dashboard Hero */
+  .dashboard-hero {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .target-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .hero-actions {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .hero-actions .btn {
+    flex: 1;
+  }
+
+  .phases-timeline {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  /* Charts */
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card.span-2 {
+    grid-column: span 1;
+  }
+
+  .tracks-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Productivity Score */
+  .prod-score-card {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .prod-score-left {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .score-factors-grid {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  /* Settings Layout */
+  .settings-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid, .exams-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-content-body {
+    padding: 12px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .checklist-header-bar, .today-header-bar, .calendar-header-bar, .projects-header-bar, .exams-header-bar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .checklist-top-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .checklist-top-actions .btn {
+    flex: 1;
+  }
+
+  .target-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .kpi-card {
+    padding: 12px;
+  }
+
+  .kpi-value {
+    font-size: 22px;
+  }
+
+  .tracks-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Task Row */
+  .task-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .task-title-line {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .task-badges-inline {
+    margin-left: 0;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+
+  .task-actions {
+    width: 100%;
+    justify-content: flex-end;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 6px;
+    margin-top: 4px;
+  }
+
+  /* Today Cards */
+  .today-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .today-card-left {
+    width: 100%;
+  }
+
+  .today-card-actions {
+    width: 100%;
+    justify-content: flex-end;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 8px;
+  }
+
+  /* Calendar */
+  .calendar-month-grid .calendar-cell {
+    min-height: 70px;
+    padding: 4px;
+  }
+
+  .task-chip {
+    font-size: 9px;
+    padding: 2px 4px;
+  }
+
+  .calendar-nav-controls {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .calendar-nav-controls .btn-group {
+    width: 100%;
+    display: flex;
+  }
+
+  .calendar-nav-controls .btn-group .btn {
+    flex: 1;
+  }
+
+  /* Modals */
+  .modal-window {
+    max-height: 95vh;
+  }
+}

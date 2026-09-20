@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Preparation &amp; Skill Mastery System | B.Sc Data Science</title>
+  <meta name="description" content="Production-grade, non-punitive career preparation checklist and productivity system for Data Analytics, Data Science, Mass Hiring exams, and DSA.">
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- External CDN Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body class="dark-theme">
+
+  <!-- Mobile Top Bar -->
+  <header class="mobile-top-bar d-lg-none">
+    <button class="mobile-menu-toggle" onclick="App.toggleMobileSidebar()" aria-label="Toggle Navigation">
+      <i data-lucide="menu"></i>
+    </button>
+    <div class="mobile-brand">
+      <span class="brand-accent-dot"></span>
+      <span class="brand-title">CareerMastery</span>
+    </div>
+    <button class="mobile-search-btn" onclick="App.openGlobalSearch()" aria-label="Search">
+      <i data-lucide="search"></i>
+    </button>
+  </header>
+
+  <!-- App Wrapper -->
+  <div class="app-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-brand-wrapper">
+        <div class="brand-logo-container">
+          <div class="brand-icon-box">
+            <i data-lucide="graduation-cap"></i>
+          </div>
+          <div class="brand-text-block">
+            <h2 class="brand-heading">CareerMastery</h2>
+            <span class="brand-subheading">B.Sc Data Science</span>
+          </div>
+        </div>
+        <button class="sidebar-close-btn d-lg-none" onclick="App.toggleMobileSidebar()" aria-label="Close Sidebar">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <!-- Target Milestone Capsule -->
+      <div class="sidebar-target-box">
+        <div class="target-capsule-header">
+          <span class="pulse-indicator"></span>
+          <span class="target-capsule-label">Target: 1 Jan 2027</span>
+        </div>
+        <div class="target-capsule-stats">
+          <div>
+            <span class="target-capsule-number" id="header-days-remaining">103d</span>
+            <span class="target-capsule-sub">Remaining</span>
+          </div>
+          <div class="text-right">
+            <span class="target-capsule-number text-accent" id="header-completion-pct">0%</span>
+            <span class="target-capsule-sub">Mastery</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary Navigation Links -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Command Center</div>
+        <a href="#dashboard" class="nav-link active" data-view="dashboard" onclick="App.navigateTo('dashboard'); return false;">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="#checklist" class="nav-link" data-view="checklist" onclick="App.navigateTo('checklist'); return false;">
+          <i data-lucide="check-square"></i>
+          <span>Master Checklist</span>
+        </a>
+        <a href="#today" class="nav-link" data-view="today" onclick="App.navigateTo('today'); return false;">
+          <i data-lucide="sun"></i>
+          <span>Today's Focus</span>
+        </a>
+        <a href="#calendar" class="nav-link" data-view="calendar" onclick="App.navigateTo('calendar'); return false;">
+          <i data-lucide="calendar"></i>
+          <span>Calendar</span>
+        </a>
+
+        <div class="nav-section-title mt-3">Curriculum &amp; Output</div>
+        <a href="#tracks" class="nav-link" data-view="tracks" onclick="App.navigateTo('tracks'); return false;">
+          <i data-lucide="layers"></i>
+          <span>Tracks &amp; Subjects</span>
+        </a>
+        <a href="#projects" class="nav-link" data-view="projects" onclick="App.navigateTo('projects'); return false;">
+          <i data-lucide="folder-git-2"></i>
+          <span>Projects Portfolio</span>
+        </a>
+        <a href="#exams" class="nav-link" data-view="exams" onclick="App.navigateTo('exams'); return false;">
+          <i data-lucide="award"></i>
+          <span>Exams &amp; Assessments</span>
+        </a>
+        <a href="#revisions" class="nav-link" data-view="revisions" onclick="App.navigateTo('revisions'); return false;">
+          <i data-lucide="repeat"></i>
+          <span>Spaced Revision</span>
+        </a>
+
+        <div class="nav-section-title mt-3">Insights &amp; System</div>
+        <a href="#analytics" class="nav-link" data-view="analytics" onclick="App.navigateTo('analytics'); return false;">
+          <i data-lucide="bar-chart-3"></i>
+          <span>Analytics</span>
+        </a>
+        <a href="#settings" class="nav-link" data-view="settings" onclick="App.navigateTo('settings'); return false;">
+          <i data-lucide="settings"></i>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <!-- Gamification & XP Widget in Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="xp-level-card">
+          <div class="d-flex justify-between align-center mb-1">
+            <span class="user-level-badge badge-primary" id="user-level-badge">Lvl 1</span>
+            <span class="user-xp-text" id="user-xp-display">0 XP</span>
+          </div>
+          <div class="xp-progress-bar-bg">
+            <div class="xp-progress-bar-fill" id="user-xp-progress" style="width: 20%;"></div>
+          </div>
+          <div class="xp-sub-text">Next level: 350 XP</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main-content">
+      
+      <!-- Top Header Bar -->
+      <header class="app-top-header">
+        <div class="header-left">
+          <button class="search-trigger-btn" onclick="App.openGlobalSearch()">
+            <i data-lucide="search"></i>
+            <span>Search topics, tasks, formulas, interview questions...</span>
+            <kbd class="shortcut-badge">Ctrl K</kbd>
+          </button>
+        </div>
+
+        <div class="header-right">
+          <div class="header-badge-tag" id="header-target-badge">
+            <span class="pulse-indicator"></span> Target: 1 Jan 2027
+          </div>
+
+          <button class="btn btn-sm btn-primary" onclick="App.openTaskModal()">
+            <i data-lucide="plus"></i> <span class="d-none d-sm-inline">Add Task</span>
+          </button>
+
+          <button class="btn-icon-header" onclick="SettingsView.setTheme(document.body.classList.contains('dark-theme') ? 'light' : 'dark')" title="Toggle Dark/Light Mode">
+            <i data-lucide="sun-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- View Panels -->
+      <main class="app-content-body">
+        <div id="view-dashboard" class="view-panel"></div>
+        <div id="view-checklist" class="view-panel d-none"></div>
+        <div id="view-today" class="view-panel d-none"></div>
+        <div id="view-calendar" class="view-panel d-none"></div>
+        <div id="view-tracks" class="view-panel d-none"></div>
+        <div id="view-projects" class="view-panel d-none"></div>
+        <div id="view-exams" class="view-panel d-none"></div>
+        <div id="view-revisions" class="view-panel d-none"></div>
+        <div id="view-analytics" class="view-panel d-none"></div>
+        <div id="view-settings" class="view-panel d-none"></div>
+      </main>
+
+    </div>
+  </div>
+
+  <!-- Reusable Generic Modal -->
+  <div class="modal-backdrop d-none" id="generic-modal" role="dialog" aria-modal="true">
+    <div class="modal-window card animate-scale-up">
+      <div class="modal-header">
+        <h3 class="modal-title">Modal Title</h3>
+        <button class="modal-close-btn" onclick="App.closeGenericModal()" aria-label="Close Modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Dynamic Modal Content -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="App.closeGenericModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reusable Confirmation Modal -->
+  <div class="modal-backdrop d-none" id="confirm-modal" role="dialog" aria-modal="true">
+    <div class="modal-window modal-window-sm card animate-scale-up">
+      <div class="modal-header">
+        <h3 class="modal-title">Confirm Action</h3>
+        <button class="modal-close-btn" onclick="App.closeConfirmModal()" aria-label="Close Modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to proceed?</p>
+      </div>
+      <div class="modal-footer d-flex justify-end gap-2">
+        <button class="btn btn-secondary" onclick="App.closeConfirmModal()">Cancel</button>
+        <button class="btn btn-danger" id="confirm-action-btn">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Instant Search Modal -->
+  <div class="modal-backdrop d-none" id="search-modal" role="dialog" aria-modal="true">
+    <div class="modal-window modal-window-search card animate-scale-up">
+      <div class="search-modal-header">
+        <i data-lucide="search" class="search-modal-icon"></i>
+        <input 
+          type="text" 
+          id="global-search-input" 
+          class="search-modal-input" 
+          placeholder="Search all tracks, subjects, tasks, formulas, interview questions..."
+          oninput="App.handleGlobalSearch(this.value)"
+        >
+        <kbd class="shortcut-esc" onclick="App.closeGlobalSearch()">ESC</kbd>
+      </div>
+      <div class="search-results-container" id="search-results-list">
+        <!-- Grouped Instant Results -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Application Modular Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/checklist.js"></script>
+  <script src="js/today.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/tracks.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/exams.js"></script>
+  <script src="js/revisions.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/gamification.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
